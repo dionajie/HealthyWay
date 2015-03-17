@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 
 import com.example.ivan.healthyway.R;
 
@@ -27,12 +28,17 @@ public class MenuTabFragment extends Fragment {
         mTabHost = new FragmentTabHost(getActivity());
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.MenuTabHost);
 
-        //TabHost.addTab(mTabHost.newTabSpec("SemuaTab").setIndicator("Semua Fragment"),SemuaFragment.class, null);
-        //TabHost.addTab(mTabHost.newTabSpec("TerdekatTab").setIndicator("Terdekat Fragment"),TerdekatFragment.class, null);
-        //TabHost.addTab(mTabHost.newTabSpec("TerbaikTab").setIndicator("Terbaik Fragment"),TerbaikFragment.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("SemuaTab").setIndicator("Semua"), SemuaFragment_.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("TerdekatTab").setIndicator("Terdekat"),TerdekatFragment_.class, null);
+        mTabHost.addTab(mTabHost.newTabSpec("TerbaikTab").setIndicator("Terbaik"),TerbaikFragment_.class, null);
 
 
-
+        mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                mTabId = tabId;
+            }
+        });
         return mTabHost;
     }
 
